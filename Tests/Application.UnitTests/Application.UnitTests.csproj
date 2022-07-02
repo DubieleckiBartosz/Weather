@@ -26,8 +26,4 @@
     <ProjectReference Include="..\..\Weather.API\Weather.API.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\WeatherService\" />
-  </ItemGroup>
-
 </Project>
