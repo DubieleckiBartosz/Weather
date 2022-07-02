@@ -31,7 +31,7 @@ namespace Weather.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Weather.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "Weather.API", Version = "v1"});
             });
         }
 
@@ -53,13 +53,16 @@ namespace Weather.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }
