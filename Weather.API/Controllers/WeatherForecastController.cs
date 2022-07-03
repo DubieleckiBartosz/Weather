@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Weather.API.Common.Interfaces;
 using Weather.API.Common.Models.RequestModels;
+using Weather.API.Common.Models.ResponseModels;
 
 namespace Weather.API.Controllers
 {
@@ -20,6 +21,7 @@ namespace Weather.API.Controllers
             _weatherService = weatherService ?? throw new ArgumentNullException(nameof(weatherService));
         }
 
+        [ProducesResponseType(typeof(WeatherForecastResponse), 200)]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetForecasts([FromQuery] WeathersRequest request)//WeatherParameters parameters
         {
@@ -27,6 +29,7 @@ namespace Weather.API.Controllers
             return Ok(result);
         }
 
+        [ProducesResponseType(typeof(ActualWeatherResponse), 200)]
         [HttpGet("[action]")]
         public async Task<IActionResult> GetActualWeather([FromQuery] string cityName)
         {
